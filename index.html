@@ -1,0 +1,2161 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>婚姻家事权益初判 H5</title>
+    <style>
+:root {
+  color-scheme: light;
+  --bg: #f5f6f3;
+  --surface: #ffffff;
+  --surface-2: #f0f3ef;
+  --ink: #202124;
+  --muted: #626a6f;
+  --line: #d7ddd6;
+  --line-strong: #b8c3bc;
+  --accent: #0f766e;
+  --accent-strong: #115e59;
+  --accent-soft: #d9f0ec;
+  --warning: #b54708;
+  --warning-soft: #fff2d6;
+  --danger: #b42318;
+  --danger-soft: #fee4e2;
+  --success: #167647;
+  --success-soft: #dcfae6;
+  --gold: #a15c07;
+  --gold-soft: #f8ead4;
+  --shadow: 0 8px 28px rgba(32, 33, 36, 0.08);
+  --radius: 8px;
+  --font: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Segoe UI", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 15px;
+  letter-spacing: 0;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.icon-sprite,
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.app-shell {
+  min-height: 100vh;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 292px minmax(0, 1fr);
+  min-height: 100vh;
+}
+
+.sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: auto;
+  border-right: 1px solid var(--line);
+  background: #fbfcfa;
+  padding: 20px 16px 16px;
+}
+
+.brand {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr);
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--accent);
+}
+
+.brand h1 {
+  margin: 0 0 4px;
+  font-size: 17px;
+  line-height: 1.25;
+}
+
+.brand p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.module-nav {
+  display: grid;
+  gap: 6px;
+}
+
+.nav-button {
+  display: grid;
+  grid-template-columns: 26px minmax(0, 1fr) auto;
+  gap: 8px;
+  align-items: center;
+  width: 100%;
+  min-height: 42px;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--ink);
+  padding: 8px 10px;
+  text-align: left;
+}
+
+.nav-button:hover {
+  background: var(--surface-2);
+}
+
+.nav-button.active {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.nav-index {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 12px;
+  border: 1px solid var(--line);
+}
+
+.nav-button.active .nav-index {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+.nav-copy {
+  min-width: 0;
+}
+
+.nav-title {
+  display: block;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.nav-desc {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.4;
+  margin-top: 1px;
+}
+
+.nav-status {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #c7d0ca;
+}
+
+.nav-status.done {
+  background: var(--success);
+}
+
+.sidebar-note {
+  margin-top: 18px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.main {
+  min-width: 0;
+  padding: 24px clamp(18px, 3vw, 40px) 40px;
+}
+
+.topbar {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.eyebrow {
+  margin: 0 0 6px;
+  color: var(--accent-strong);
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.page-title {
+  margin: 0;
+  font-size: clamp(24px, 3vw, 34px);
+  line-height: 1.18;
+}
+
+.page-subtitle {
+  max-width: 880px;
+  margin: 8px 0 0;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+  min-width: 300px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 36px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--ink);
+  padding: 8px 11px;
+  text-decoration: none;
+  line-height: 1.2;
+}
+
+.btn:hover {
+  border-color: var(--accent);
+  color: var(--accent-strong);
+}
+
+.btn.primary {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #fff;
+}
+
+.btn.primary:hover {
+  background: var(--accent-strong);
+  color: #fff;
+}
+
+.btn.danger {
+  border-color: #f0aaa4;
+  color: var(--danger);
+}
+
+.btn.icon-only {
+  width: 36px;
+  padding: 0;
+}
+
+.icon {
+  width: 17px;
+  height: 17px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex: 0 0 auto;
+}
+
+.notice {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: start;
+  margin: 0 0 16px;
+  padding: 14px;
+  border: 1px solid #f4c790;
+  border-radius: var(--radius);
+  background: var(--warning-soft);
+}
+
+.notice h2 {
+  margin: 0 0 4px;
+  font-size: 16px;
+}
+
+.notice p {
+  margin: 0;
+  color: #6f3f0a;
+  line-height: 1.55;
+}
+
+.workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 18px;
+  align-items: start;
+}
+
+.section-stack {
+  display: grid;
+  gap: 16px;
+}
+
+.panel {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.panel-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 16px 18px 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+.panel-header h2,
+.panel-header h3 {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.35;
+}
+
+.panel-header p {
+  margin: 5px 0 0;
+  color: var(--muted);
+  line-height: 1.55;
+  font-size: 13px;
+}
+
+.panel-body {
+  padding: 18px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.form-grid.single {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.field {
+  display: grid;
+  gap: 7px;
+}
+
+.field.full {
+  grid-column: 1 / -1;
+}
+
+.field label {
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.field .hint {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  min-height: 38px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  background: #fff;
+  color: var(--ink);
+  padding: 8px 10px;
+}
+
+.field textarea {
+  min-height: 86px;
+  resize: vertical;
+  line-height: 1.55;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: 3px solid rgba(15, 118, 110, 0.18);
+  border-color: var(--accent);
+}
+
+.table-wrap {
+  overflow: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.data-table {
+  width: 100%;
+  min-width: 880px;
+  border-collapse: collapse;
+  background: #fff;
+}
+
+.data-table th,
+.data-table td {
+  border-bottom: 1px solid var(--line);
+  padding: 8px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.data-table th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: #edf4f2;
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.data-table td {
+  min-width: 120px;
+}
+
+.data-table td.compact,
+.data-table th.compact {
+  min-width: 54px;
+  width: 54px;
+}
+
+.data-table td.wide {
+  min-width: 210px;
+}
+
+.data-table input,
+.data-table select {
+  width: 100%;
+  min-height: 34px;
+  border: 1px solid var(--line-strong);
+  border-radius: 6px;
+  padding: 6px 8px;
+}
+
+.computed {
+  display: block;
+  min-height: 34px;
+  border-radius: 6px;
+  background: var(--success-soft);
+  color: #075d37;
+  padding: 7px 8px;
+  line-height: 1.45;
+}
+
+.computed.warn {
+  background: var(--warning-soft);
+  color: #7a4304;
+}
+
+.computed.danger {
+  background: var(--danger-soft);
+  color: var(--danger);
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.metric {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #fff;
+  padding: 13px;
+}
+
+.metric b {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.metric strong {
+  display: block;
+  font-size: 19px;
+  line-height: 1.25;
+}
+
+.metric p {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.result-list {
+  display: grid;
+  gap: 10px;
+}
+
+.result-item {
+  border-left: 4px solid var(--accent);
+  background: #fff;
+  padding: 12px 13px;
+}
+
+.result-item.high {
+  border-left-color: var(--danger);
+}
+
+.result-item.medium {
+  border-left-color: var(--warning);
+}
+
+.result-item.low {
+  border-left-color: var(--success);
+}
+
+.result-item h3 {
+  margin: 0 0 6px;
+  font-size: 15px;
+}
+
+.result-item p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.side-rail {
+  display: grid;
+  gap: 16px;
+  position: sticky;
+  top: 20px;
+}
+
+.preview-image {
+  display: block;
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #fff;
+}
+
+.rail-list {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rail-list li {
+  display: grid;
+  gap: 3px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+}
+
+.rail-list li:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.rail-list b {
+  font-size: 13px;
+}
+
+.rail-list span {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.report {
+  display: grid;
+  gap: 13px;
+}
+
+.report-row {
+  display: grid;
+  grid-template-columns: 160px minmax(0, 1fr) 78px;
+  gap: 12px;
+  align-items: start;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #fff;
+}
+
+.report-row h3 {
+  margin: 0;
+  font-size: 15px;
+}
+
+.report-row p {
+  margin: 0;
+  line-height: 1.58;
+  color: var(--muted);
+}
+
+.priority {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 26px;
+  border-radius: 999px;
+  padding: 3px 10px;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.priority.high {
+  background: var(--danger-soft);
+  color: var(--danger);
+}
+
+.priority.medium {
+  background: var(--warning-soft);
+  color: var(--warning);
+}
+
+.priority.low {
+  background: var(--success-soft);
+  color: var(--success);
+}
+
+.rules-list {
+  display: grid;
+  gap: 10px;
+}
+
+.rule-item {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #fff;
+  padding: 13px;
+}
+
+.rule-item h3 {
+  margin: 0 0 6px;
+  font-size: 15px;
+}
+
+.rule-item p {
+  margin: 0 0 8px;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  color: #4b5357;
+  padding: 3px 8px;
+  font-size: 12px;
+}
+
+.toast {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 20;
+  max-width: min(420px, calc(100vw - 36px));
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  padding: 11px 13px;
+  color: var(--ink);
+  line-height: 1.45;
+}
+
+.empty {
+  border: 1px dashed var(--line-strong);
+  border-radius: var(--radius);
+  background: #fff;
+  padding: 20px;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+@media (max-width: 1120px) {
+  .layout {
+    grid-template-columns: 240px minmax(0, 1fr);
+  }
+
+  .workspace {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .side-rail {
+    position: static;
+  }
+}
+
+@media (max-width: 820px) {
+  .layout {
+    display: block;
+  }
+
+  .sidebar {
+    position: static;
+    height: auto;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .module-nav {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .topbar {
+    display: grid;
+  }
+
+  .toolbar {
+    justify-content: flex-start;
+    min-width: 0;
+  }
+
+  .form-grid,
+  .summary-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .notice {
+    grid-template-columns: 24px minmax(0, 1fr);
+  }
+
+  .notice .btn {
+    grid-column: 1 / -1;
+    width: fit-content;
+  }
+
+  .report-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 520px) {
+  .main {
+    padding: 18px 12px 28px;
+  }
+
+  .sidebar {
+    padding: 16px 12px;
+  }
+
+  .module-nav {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .panel-header,
+  .panel-body {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}
+
+@media print {
+  body {
+    background: #fff;
+  }
+
+  .sidebar,
+  .toolbar,
+  .notice,
+  .side-rail,
+  .panel:not(.printable) {
+    display: none !important;
+  }
+
+  .layout {
+    display: block;
+  }
+
+  .main {
+    padding: 0;
+  }
+
+  .panel,
+  .report-row {
+    box-shadow: none;
+    break-inside: avoid;
+  }
+}
+
+    </style>
+  </head>
+  <body>
+    <svg aria-hidden="true" class="icon-sprite">
+      <symbol id="icon-scale" viewBox="0 0 24 24">
+        <path d="M12 3v18M6 6h12M7 6l-4 7h8L7 6ZM17 6l-4 7h8l-4-7ZM5 21h14" />
+      </symbol>
+      <symbol id="icon-shield" viewBox="0 0 24 24">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" />
+      </symbol>
+      <symbol id="icon-file" viewBox="0 0 24 24">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z" />
+        <path d="M14 2v6h6M8 13h8M8 17h6" />
+      </symbol>
+      <symbol id="icon-copy" viewBox="0 0 24 24">
+        <rect x="9" y="9" width="13" height="13" rx="2" />
+        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+      </symbol>
+      <symbol id="icon-download" viewBox="0 0 24 24">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+        <path d="M7 10l5 5 5-5M12 15V3" />
+      </symbol>
+      <symbol id="icon-upload" viewBox="0 0 24 24">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+        <path d="M17 8l-5-5-5 5M12 3v12" />
+      </symbol>
+      <symbol id="icon-print" viewBox="0 0 24 24">
+        <path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" />
+        <path d="M6 14h12v8H6z" />
+      </symbol>
+      <symbol id="icon-refresh" viewBox="0 0 24 24">
+        <path d="M21 12a9 9 0 0 1-15.5 6.2L3 16M3 12A9 9 0 0 1 18.5 5.8L21 8" />
+        <path d="M3 16v5h5M21 8V3h-5" />
+      </symbol>
+      <symbol id="icon-plus" viewBox="0 0 24 24">
+        <path d="M12 5v14M5 12h14" />
+      </symbol>
+      <symbol id="icon-trash" viewBox="0 0 24 24">
+        <path d="M3 6h18M8 6V4h8v2M6 6l1 16h10l1-16M10 11v6M14 11v6" />
+      </symbol>
+      <symbol id="icon-check" viewBox="0 0 24 24">
+        <path d="M20 6 9 17l-5-5" />
+      </symbol>
+    </svg>
+
+    <div id="app" class="app-shell"></div>
+    <input id="importFile" class="visually-hidden" style="display:none" type="file" accept="application/json" />
+    <script>
+(function () {
+  "use strict";
+
+  const STORAGE_KEY = "marriage-law-product-v1";
+
+  const yesNoUnknown = ["是", "否", "不确定"];
+  const yesNoNaUnknown = ["是", "否", "不适用", "不确定"];
+  const registeredOptions = ["已办理结婚登记", "未办理结婚登记", "不确定"];
+  const childCareOptions = ["父亲", "母亲", "双方轮流", "祖父母/外祖父母", "其他", "不确定"];
+  const childWishOptions = ["愿随父亲", "愿随母亲", "愿轮流/均可", "未表达/不适用", "不确定"];
+  const propertyTypeOptions = ["房产", "车辆", "存款/现金", "股票/基金", "保险", "公司股权", "经营收益", "公积金/养老金", "知识产权收益", "贵重物品", "数字资产", "其他"];
+  const acquireTimeOptions = ["婚前取得", "婚后取得", "离婚后取得", "不确定"];
+  const ownerOptions = ["男方名下", "女方名下", "双方名下", "子女名下", "他人名下", "不确定"];
+  const contributionOptions = ["一方婚前个人财产", "夫妻共同收入", "双方共同出资", "一方父母全额出资", "一方父母部分出资", "双方父母出资", "继承/受赠", "不确定"];
+  const debtUseOptions = ["家庭日常生活", "夫妻共同经营", "购置共同财产", "个人消费", "赌博/违法活动", "担保/投资", "不确定"];
+  const debtTimeOptions = ["婚前", "婚后", "离婚后", "不确定"];
+  const debtorOptions = ["一方名义", "双方名义", "第三方名义", "不确定"];
+
+  const modules = [
+    { id: "guide", title: "风险声明", desc: "授权与边界" },
+    { id: "base", title: "基础信息", desc: "身份与程序路径" },
+    { id: "divorce", title: "离婚判断", desc: "法定情形匹配" },
+    { id: "children", title: "子女抚养", desc: "抚养倾向与费用" },
+    { id: "property", title: "财产清单", desc: "共同财产初算" },
+    { id: "debt", title: "债务清单", desc: "共同债务初判" },
+    { id: "bridePrice", title: "彩礼返还", desc: "返还支持度" },
+    { id: "relief", title: "补偿赔偿", desc: "少分不分等救济" },
+    { id: "report", title: "结果报告", desc: "自动生成报告" },
+    { id: "rules", title: "规则库", desc: "法源与维护" },
+  ];
+
+  const baseFields = [
+    { path: "base.registeredStatus", label: "婚姻登记状态", type: "select", options: registeredOptions, hint: "未登记通常不进入离婚路径，但可能涉及同居析产、子女抚养、彩礼返还。" },
+    { path: "base.registrationDate", label: "结婚登记日期", type: "date", hint: "用于判断婚前/婚后财产、共同生活时间等。" },
+    { path: "base.bothAgree", label: "双方是否均同意离婚", type: "select", options: yesNoUnknown, hint: "协议离婚路径的核心事实。" },
+    { path: "base.divorceAgreement", label: "是否已有离婚协议", type: "select", options: yesNoUnknown, hint: "协议应包括子女、财产、债务等处理。" },
+    { path: "base.coolingPeriod", label: "是否愿意经过冷静期并共同申领", type: "select", options: yesNoUnknown, hint: "一方不到场或撤回，协议离婚不能完成。" },
+    { path: "base.firstSuit", label: "是否第一次起诉离婚", type: "select", options: yesNoUnknown, hint: "第一次起诉不当然判离，仍看法定情形及综合判断。" },
+    { path: "base.separatedAfterNoJudgment", label: "上次判不离后是否又分居满一年", type: "select", options: yesNoNaUnknown, hint: "符合时属于民法典明确的准予离婚情形之一。" },
+    { path: "base.maleSuitLimit", label: "是否存在男方起诉限制期间", type: "select", options: yesNoNaUnknown, hint: "如女方孕期、分娩后一年内或终止妊娠后六个月内。" },
+    { path: "base.militaryMarriage", label: "是否涉及现役军人配偶", type: "select", options: yesNoUnknown, hint: "涉及军婚需特别判断。" },
+    { path: "base.bigamy", label: "是否存在重婚", type: "select", options: yesNoUnknown, hint: "既可能涉及婚姻无效，也可能构成准予离婚因素。" },
+    { path: "base.underage", label: "是否存在未达法定婚龄登记", type: "select", options: yesNoUnknown, hint: "可能涉及婚姻无效。" },
+    { path: "base.prohibitedKinship", label: "是否存在禁止结婚的近亲属关系", type: "select", options: yesNoUnknown, hint: "可能涉及婚姻无效。" },
+    { path: "base.coercedMarriage", label: "是否存在受胁迫结婚", type: "select", options: yesNoUnknown, hint: "涉及撤销期间和意思表示。" },
+    { path: "base.concealedDisease", label: "是否婚前隐瞒重大疾病", type: "select", options: yesNoUnknown, hint: "需结合疾病性质、告知义务和撤销期间。" },
+    { path: "base.mainIssues", label: "用户希望解决的主要问题", type: "text", hint: "可填：离婚、财产、子女、债务、彩礼、家暴、其他。", full: true },
+  ];
+
+  const divorceFields = [
+    { path: "divorce.bigamyCohabitation", label: "重婚或者与他人同居", type: "select", options: yesNoUnknown, weight: 5, effect: "诉讼离婚强匹配" },
+    { path: "divorce.domesticViolence", label: "实施家庭暴力", type: "select", options: yesNoUnknown, weight: 5, effect: "诉讼离婚强匹配" },
+    { path: "divorce.abuseAbandon", label: "虐待、遗弃家庭成员", type: "select", options: yesNoUnknown, weight: 5, effect: "诉讼离婚强匹配" },
+    { path: "divorce.badHabits", label: "有赌博、吸毒等恶习屡教不改", type: "select", options: yesNoUnknown, weight: 5, effect: "诉讼离婚较强匹配" },
+    { path: "divorce.separatedTwoYears", label: "因感情不和分居满二年", type: "select", options: yesNoUnknown, weight: 3, effect: "审慎中高匹配" },
+    { path: "divorce.declaredMissing", label: "一方被宣告失踪", type: "select", options: yesNoUnknown, weight: 5, effect: "诉讼离婚强匹配" },
+    { path: "divorce.otherBroken", label: "其他导致夫妻感情破裂的情形", type: "select", options: yesNoUnknown, weight: 2, effect: "综合裁量情形" },
+    { path: "divorce.agreementOnAll", label: "双方对子女、财产、债务均已基本达成一致", type: "select", options: yesNoUnknown, weight: 2, effect: "协议可行性因素" },
+  ];
+
+  const childTableFields = [
+    { key: "age", label: "年龄", type: "number" },
+    { key: "care", label: "当前主要照护方", type: "select", options: childCareOptions },
+    { key: "wish", label: "8周岁以上意愿", type: "select", options: childWishOptions },
+    { key: "specialNeeds", label: "特殊健康/教育需求", type: "select", options: yesNoUnknown },
+    { key: "fatherBad", label: "父亲严重不利因素", type: "select", options: yesNoUnknown },
+    { key: "motherBad", label: "母亲严重不利因素", type: "select", options: yesNoUnknown },
+  ];
+
+  const propertyTableFields = [
+    { key: "type", label: "财产类别", type: "select", options: ["", ...propertyTypeOptions] },
+    { key: "name", label: "财产名称", type: "text" },
+    { key: "value", label: "估值", type: "number" },
+    { key: "acquireTime", label: "取得时间", type: "select", options: acquireTimeOptions },
+    { key: "owner", label: "登记名义", type: "select", options: ownerOptions },
+    { key: "source", label: "出资来源", type: "select", options: contributionOptions },
+    { key: "agreement", label: "夫妻财产约定", type: "select", options: yesNoUnknown },
+    { key: "exclusiveGift", label: "继承/受赠明确只归一方", type: "select", options: yesNoUnknown },
+    { key: "parentFunded", label: "父母出资购房", type: "select", options: yesNoUnknown },
+  ];
+
+  const debtTableFields = [
+    { key: "name", label: "债务名称", type: "text" },
+    { key: "amount", label: "债务金额", type: "number" },
+    { key: "time", label: "发生时间", type: "select", options: debtTimeOptions },
+    { key: "debtor", label: "债务名义", type: "select", options: debtorOptions },
+    { key: "signed", label: "对方共同签字/追认", type: "select", options: yesNoUnknown },
+    { key: "use", label: "债务用途", type: "select", options: debtUseOptions },
+    { key: "exceedsDaily", label: "超出家庭日常需要", type: "select", options: yesNoUnknown },
+    { key: "illegal", label: "赌博/违法债务", type: "select", options: yesNoUnknown },
+  ];
+
+  const bridePriceFields = [
+    { path: "bridePrice.exists", label: "是否存在彩礼", type: "select", options: yesNoUnknown, hint: "如无彩礼，本模块不适用。" },
+    { path: "bridePrice.amount", label: "彩礼金额", type: "number", hint: "金额大小影响返还比例和风险判断。" },
+    { path: "bridePrice.registered", label: "是否办理结婚登记", type: "select", options: yesNoUnknown, hint: "未登记通常返还支持度更高。" },
+    { path: "bridePrice.livedTogether", label: "是否共同生活", type: "select", options: yesNoUnknown, hint: "已共同生活会影响返还比例。" },
+    { path: "bridePrice.months", label: "共同生活时长（月）", type: "number", hint: "共同生活时间越长，通常返还比例越低。" },
+    { path: "bridePrice.pregnant", label: "是否生育或怀孕", type: "select", options: yesNoUnknown, hint: "孕育情况会影响返还比例。" },
+    { path: "bridePrice.hardship", label: "给付彩礼是否导致生活困难", type: "select", options: yesNoUnknown, hint: "生活困难可能影响返还支持度。" },
+    { path: "bridePrice.usedForLife", label: "彩礼是否主要用于共同生活", type: "select", options: yesNoUnknown, hint: "用于共同生活通常降低返还比例。" },
+    { path: "bridePrice.fault", label: "双方是否存在明显过错", type: "select", options: yesNoUnknown, hint: "过错影响返还比例。" },
+  ];
+
+  const reliefFields = [
+    { path: "relief.transferProperty", label: "一方隐藏、转移、变卖、毁损、挥霍夫妻共同财产", type: "select", options: yesNoUnknown, consequence: "可主张少分或不分", source: "民法典第1092条" },
+    { path: "relief.fakeDebt", label: "一方伪造夫妻共同债务", type: "select", options: yesNoUnknown, consequence: "可主张少分或不分", source: "民法典第1092条" },
+    { path: "relief.housework", label: "一方负担较多家务、照料老人子女、协助另一方工作", type: "select", options: yesNoUnknown, consequence: "可主张家务劳动补偿", source: "民法典第1088条" },
+    { path: "relief.hardship", label: "一方离婚后生活困难", type: "select", options: yesNoUnknown, consequence: "可请求适当帮助", source: "民法典第1090条" },
+    { path: "relief.majorFault", label: "对方存在重婚、同居、家暴、虐待遗弃等重大过错", type: "select", options: yesNoUnknown, consequence: "可主张离婚损害赔偿", source: "民法典第1091条" },
+  ];
+
+  const ruleRows = [
+    ["民法典第1079条", "离婚判断", "重婚同居、家暴、虐待遗弃、恶习、分居、失踪、再次起诉后分居等情形，进入准予离婚判断。", "离婚法定情形字段", "诉讼离婚支持度"],
+    ["程序事实修正", "离婚判断", "首次起诉且主要依赖一般感情破裂事实时，应保守表达；判不离后又分居满一年再次起诉时，支持度显著提高。", "是否第一次起诉、判不离后又分居满一年", "谨慎/中等/中高/较高分层"],
+    ["婚姻效力规则", "婚姻关系路径", "重婚、未达法定婚龄、禁止结婚亲属关系进入婚姻无效判断；胁迫、重大疾病未告知进入可撤销判断。", "重婚、婚龄、近亲、胁迫、重大疾病", "无效/可撤销/离婚路径分流"],
+    ["同居析产规则", "婚姻关系路径/财产", "未办理结婚登记通常不进入离婚路径，但可能进入同居析产、子女抚养、彩礼返还。", "登记状态、共同生活、共同财产来源", "同居析产提示"],
+    ["离婚协议效力", "协议离婚/离婚后财产", "离婚协议通常以完成离婚登记为生效前提；虚假离婚、欺诈胁迫、债权人撤销权需专项判断。", "协议签署、登记、反悔原因", "协议效力/反悔风险"],
+    ["民法典第1084条", "子女抚养", "两周岁以下、八周岁以上意愿、照护稳定性等因素影响直接抚养判断。", "子女年龄、意愿、照护情况", "直接抚养倾向"],
+    ["民法典第1062条", "财产清单", "婚姻关系存续期间工资、奖金、生产经营投资收益、知识产权收益等通常为共同财产。", "取得时间、财产类别", "倾向共同财产"],
+    ["民法典第1063条", "财产清单", "一方婚前财产、人身损害赔偿、明确只归一方的继承赠与财产等通常为个人财产。", "婚前/继承受赠/约定", "倾向个人财产"],
+    ["民法典第1064条", "债务清单", "共同签名、追认、家庭日常生活需要或共同生活经营所负债务，进入共同债务判断。", "签字追认、用途、金额", "共同债务初判"],
+    ["涉彩礼司法解释", "彩礼返还", "彩礼返还综合考虑登记、共同生活、孕育、用途、困难、过错等因素。", "彩礼金额、登记、共同生活、孕育", "彩礼返还支持度"],
+    ["父母出资购房", "财产专项", "婚后一方或双方父母为子女购房出资，离婚时需结合登记、出资、约定和公平原则判断。", "房产登记、父母出资比例、约定", "房产专项判断"],
+    ["公司股权分割", "财产专项", "夫妻共同财产出资但登记在一方名下的有限责任公司股权，应专项判断分割路径和公司法限制。", "股权登记、出资来源、公司类型", "股权专项判断"],
+    ["个人信息保护法", "合规风控", "婚姻、子女、财产、健康等信息处理应遵循必要性、告知同意和安全保护原则。", "小程序收集字段", "隐私合规提示"],
+  ];
+
+  let state = loadState();
+
+  function boot() {
+    renderApp();
+    bindImport();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", boot);
+  } else {
+    boot();
+  }
+
+  document.addEventListener("input", (event) => {
+    const target = event.target;
+    if (!(target instanceof HTMLInputElement || target instanceof HTMLTextAreaElement || target instanceof HTMLSelectElement)) return;
+    if (!target.dataset.path) return;
+    setByPath(state, target.dataset.path, target.value);
+    saveState();
+  });
+
+  document.addEventListener("change", (event) => {
+    const target = event.target;
+    if (!(target instanceof HTMLInputElement || target instanceof HTMLTextAreaElement || target instanceof HTMLSelectElement)) return;
+    if (!target.dataset.path) return;
+    setByPath(state, target.dataset.path, target.value);
+    saveState();
+    renderApp();
+  });
+
+  document.addEventListener("click", (event) => {
+    const actionEl = event.target.closest("[data-action]");
+    if (!actionEl) return;
+    const action = actionEl.dataset.action;
+    const value = actionEl.dataset.value;
+
+    if (action === "nav") {
+      state.activeModule = value;
+      saveState();
+      renderApp();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
+    if (action === "accept") {
+      state.accepted = true;
+      state.activeModule = "base";
+      saveState();
+      renderApp();
+      toast("已确认风险声明，可以开始填写。");
+      return;
+    }
+    if (action === "reset") {
+      if (confirm("确认清空当前填写内容？此操作只影响本机浏览器保存的数据。")) {
+        state = defaultState();
+        saveState();
+        renderApp();
+        toast("已清空本地填写内容。");
+      }
+      return;
+    }
+    if (action === "add-row") {
+      addRow(value);
+      saveState();
+      renderApp();
+      return;
+    }
+    if (action === "remove-row") {
+      removeRow(actionEl.dataset.scope, Number(actionEl.dataset.index));
+      saveState();
+      renderApp();
+      return;
+    }
+    if (action === "copy-report") {
+      copyReport();
+      return;
+    }
+    if (action === "download-report") {
+      downloadTextReport();
+      return;
+    }
+    if (action === "export-json") {
+      downloadJson();
+      return;
+    }
+    if (action === "import-json") {
+      document.getElementById("importFile").click();
+      return;
+    }
+    if (action === "print") {
+      state.activeModule = "report";
+      saveState();
+      renderApp();
+      setTimeout(() => window.print(), 150);
+      return;
+    }
+    if (action === "demo") {
+      state = demoState();
+      saveState();
+      renderApp();
+      toast("已填入一组演示数据，便于查看自动报告。");
+      return;
+    }
+  });
+
+  function defaultState() {
+    return {
+      accepted: false,
+      activeModule: "guide",
+      base: {
+        registeredStatus: "已办理结婚登记",
+        registrationDate: "",
+        bothAgree: "不确定",
+        divorceAgreement: "不确定",
+        coolingPeriod: "不确定",
+        firstSuit: "不确定",
+        separatedAfterNoJudgment: "不适用",
+        maleSuitLimit: "不适用",
+        militaryMarriage: "不确定",
+        bigamy: "不确定",
+        underage: "不确定",
+        prohibitedKinship: "不确定",
+        coercedMarriage: "不确定",
+        concealedDisease: "不确定",
+        mainIssues: "离婚、财产、子女",
+      },
+      divorce: {
+        bigamyCohabitation: "不确定",
+        domesticViolence: "不确定",
+        abuseAbandon: "不确定",
+        badHabits: "不确定",
+        separatedTwoYears: "不确定",
+        declaredMissing: "不确定",
+        otherBroken: "不确定",
+        agreementOnAll: "不确定",
+      },
+      children: {
+        count: "",
+        fatherIncome: "",
+        motherIncome: "",
+        preferred: "不确定",
+        rows: [makeChildRow(1), makeChildRow(2)],
+      },
+      property: {
+        rows: [makePropertyRow(), makePropertyRow(), makePropertyRow()],
+      },
+      debt: {
+        rows: [makeDebtRow(), makeDebtRow()],
+      },
+      bridePrice: {
+        exists: "否",
+        amount: "",
+        registered: "不确定",
+        livedTogether: "不确定",
+        months: "",
+        pregnant: "不确定",
+        hardship: "不确定",
+        usedForLife: "不确定",
+        fault: "不确定",
+      },
+      relief: {
+        transferProperty: "不确定",
+        fakeDebt: "不确定",
+        housework: "不确定",
+        hardship: "不确定",
+        majorFault: "不确定",
+      },
+    };
+  }
+
+  function demoState() {
+    const next = defaultState();
+    next.accepted = true;
+    next.activeModule = "report";
+    next.base.bothAgree = "否";
+    next.base.firstSuit = "是";
+    next.divorce.domesticViolence = "是";
+    next.divorce.separatedTwoYears = "否";
+    next.children.count = "1";
+    next.children.fatherIncome = "30000";
+    next.children.motherIncome = "18000";
+    next.children.rows = [
+      { age: "6", care: "母亲", wish: "未表达/不适用", specialNeeds: "否", fatherBad: "是", motherBad: "否" },
+    ];
+    next.property.rows = [
+      { type: "房产", name: "婚后购买住宅", value: "3800000", acquireTime: "婚后取得", owner: "双方名下", source: "双方共同出资", agreement: "否", exclusiveGift: "否", parentFunded: "否" },
+      { type: "公司股权", name: "男方名下公司股权", value: "1200000", acquireTime: "婚后取得", owner: "男方名下", source: "夫妻共同收入", agreement: "否", exclusiveGift: "否", parentFunded: "否" },
+      { type: "房产", name: "一方父母出资房", value: "2600000", acquireTime: "婚后取得", owner: "男方名下", source: "一方父母全额出资", agreement: "否", exclusiveGift: "否", parentFunded: "是" },
+    ];
+    next.debt.rows = [
+      { name: "经营周转借款", amount: "500000", time: "婚后", debtor: "一方名义", signed: "否", use: "夫妻共同经营", exceedsDaily: "是", illegal: "否" },
+    ];
+    next.bridePrice.exists = "是";
+    next.bridePrice.amount = "188000";
+    next.bridePrice.registered = "是";
+    next.bridePrice.livedTogether = "是";
+    next.bridePrice.months = "4";
+    next.relief.transferProperty = "是";
+    next.relief.majorFault = "是";
+    return next;
+  }
+
+  function makeChildRow() {
+    return { age: "", care: "不确定", wish: "未表达/不适用", specialNeeds: "否", fatherBad: "否", motherBad: "否" };
+  }
+
+  function makePropertyRow() {
+    return { type: "", name: "", value: "", acquireTime: "不确定", owner: "不确定", source: "不确定", agreement: "否", exclusiveGift: "否", parentFunded: "否" };
+  }
+
+  function makeDebtRow() {
+    return { name: "", amount: "", time: "不确定", debtor: "一方名义", signed: "不确定", use: "不确定", exceedsDaily: "不确定", illegal: "不确定" };
+  }
+
+  function loadState() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return defaultState();
+      return mergeDefaults(defaultState(), JSON.parse(raw));
+    } catch (error) {
+      console.warn(error);
+      return defaultState();
+    }
+  }
+
+  function mergeDefaults(base, saved) {
+    if (Array.isArray(base)) return Array.isArray(saved) ? saved : base;
+    if (base && typeof base === "object") {
+      const out = { ...base };
+      if (saved && typeof saved === "object") {
+        for (const key of Object.keys(saved)) {
+          out[key] = key in base ? mergeDefaults(base[key], saved[key]) : saved[key];
+        }
+      }
+      return out;
+    }
+    return saved === undefined ? base : saved;
+  }
+
+  function saveState() {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  }
+
+  function renderApp() {
+    const app = document.getElementById("app");
+    const active = modules.find((item) => item.id === state.activeModule) || modules[0];
+    const results = calculateAll(state);
+
+    app.innerHTML = `
+      <div class="layout">
+        <aside class="sidebar">
+          <div class="brand">
+            <div class="brand-mark">${icon("scale")}</div>
+            <div>
+              <h1>婚姻家事权益初判</h1>
+              <p>Excel 原型转化的本地小程序</p>
+            </div>
+          </div>
+          <nav class="module-nav" aria-label="功能模块">
+            ${modules.map((mod, index) => renderNavButton(mod, index)).join("")}
+          </nav>
+          <div class="sidebar-note">
+            当前 H5 版本在用户浏览器本地运行和保存填写进度，默认不上传服务器。正式发布前仍需完善隐私协议、用户授权、日志留痕和律师复核流程。
+          </div>
+        </aside>
+        <main class="main">
+          <div class="topbar">
+            <div>
+              <p class="eyebrow">在线 H5 版 V0.1</p>
+              <h2 class="page-title">${escapeHtml(active.title)}</h2>
+              <p class="page-subtitle">${pageSubtitle(active.id)}</p>
+            </div>
+            ${renderToolbar()}
+          </div>
+          ${state.accepted ? "" : renderNotice()}
+          <div class="workspace">
+            <div class="section-stack">${renderModule(active.id, results)}</div>
+            ${renderRail(results)}
+          </div>
+        </main>
+      </div>
+    `;
+  }
+
+  function renderNavButton(mod, index) {
+    const done = isModuleStarted(mod.id);
+    return `
+      <button class="nav-button ${state.activeModule === mod.id ? "active" : ""}" type="button" data-action="nav" data-value="${escapeAttr(mod.id)}">
+        <span class="nav-index">${index + 1}</span>
+        <span class="nav-copy">
+          <span class="nav-title">${escapeHtml(mod.title)}</span>
+          <span class="nav-desc">${escapeHtml(mod.desc)}</span>
+        </span>
+        <span class="nav-status ${done ? "done" : ""}" aria-hidden="true"></span>
+      </button>
+    `;
+  }
+
+  function renderToolbar() {
+    return `
+      <div class="toolbar">
+        <button class="btn" type="button" data-action="demo">${icon("check")}演示数据</button>
+        <button class="btn" type="button" data-action="import-json">${icon("upload")}导入</button>
+        <button class="btn" type="button" data-action="export-json">${icon("download")}导出</button>
+        <button class="btn" type="button" data-action="print">${icon("print")}打印</button>
+        <a class="btn" href="./privacy.html" target="_blank" rel="noopener">${icon("file")}隐私</a>
+        <a class="btn" href="./disclaimer.html" target="_blank" rel="noopener">${icon("shield")}声明</a>
+        <button class="btn danger" type="button" data-action="reset">${icon("refresh")}清空</button>
+      </div>
+    `;
+  }
+
+  function renderNotice() {
+    return `
+      <div class="notice">
+        <span>${icon("shield")}</span>
+        <div>
+          <h2>先确认使用边界</h2>
+          <p>本产品只根据用户自行填写的事实做规则匹配和初步分析，不审查证据真实性、充分性、合法性，不构成正式法律意见。</p>
+        </div>
+        <button class="btn primary" type="button" data-action="accept">${icon("check")}确认并开始</button>
+      </div>
+    `;
+  }
+
+  function pageSubtitle(id) {
+    const map = {
+      guide: "先把产品定位、使用边界和合规提示摆在前面。这个页面是对外发布时的底线，不是装饰文案。",
+      base: "先判断登记状态、程序限制和婚姻效力风险。基础信息决定后续是协议离婚、诉讼离婚、婚姻无效/撤销，还是同居析产分流。",
+      divorce: "这里不是给出“判离率”，而是把法定情形和程序事实做分层匹配，尤其避免首次起诉场景下过度承诺。",
+      children: "按年龄、照护稳定性、八周岁以上意愿、不利因素和抚养费口径做初判，保留法院裁量空间。",
+      property: "把财产先分为倾向共同、倾向个人、高争议和按约定另计。高争议项目不自动纳入金额，避免误导。",
+      debt: "共同签字、追认、家庭日常生活、共同经营和违法债务是核心分流点。债权人主张和夫妻内部承担可能不同。",
+      bridePrice: "彩礼返还按登记、共同生活、共同生活时间、孕育、用途、困难、过错等因素做方向判断。",
+      relief: "家务补偿、经济帮助、损害赔偿、财产转移少分不分等规则，是律师复核和付费咨询的重要触发点。",
+      report: "把前面模块压缩成用户能读懂、律师能复核、业务上能转化的初判报告。",
+      rules: "规则库是后续升级、律师审查和迁移微信小程序时的维护表。",
+    };
+    return map[id] || "";
+  }
+
+  function renderModule(id, results) {
+    if (id === "guide") return renderGuide();
+    if (id === "base") return renderBase();
+    if (id === "divorce") return renderDivorce(results);
+    if (id === "children") return renderChildren(results);
+    if (id === "property") return renderProperty(results);
+    if (id === "debt") return renderDebt(results);
+    if (id === "bridePrice") return renderBridePrice(results);
+    if (id === "relief") return renderRelief(results);
+    if (id === "report") return renderReport(results);
+    if (id === "rules") return renderRules();
+    return "";
+  }
+
+  function renderGuide() {
+    return `
+      <section class="panel">
+        <div class="panel-header">
+          <div>
+            <h2>产品定位与强制提示</h2>
+            <p>免费工具解决认知问题，正式服务解决证据、策略和行动问题。</p>
+          </div>
+        </div>
+        <div class="panel-body">
+          <div class="result-list">
+            ${renderResultItem("产品定位", "面向普通用户的婚姻家事权利初步了解工具；用于律师 IP 引流和首次咨询前的信息结构化。", "low")}
+            ${renderResultItem("使用边界", "本产品根据用户自行填写的事实进行规则匹配和初步分析，不审查证据真实性、充分性、合法性。", "medium")}
+            ${renderResultItem("强制提示", "涉及起诉、协议签署、财产处分、债务承担、子女安排、家暴人身安全等事项，应咨询专业律师后再行动。", "high")}
+            ${renderResultItem("合规底线", "对外发布前必须补齐隐私政策、个人信息处理规则、敏感信息授权、免责声明确认和律师复核入口。", "medium")}
+          </div>
+          <div style="margin-top: 16px;">
+            <button class="btn primary" type="button" data-action="accept">${icon("check")}确认风险声明并进入填写</button>
+          </div>
+        </div>
+      </section>
+    `;
+  }
+
+  function renderBase() {
+    return panel("基础信息与程序路径", "黄色 Excel 填写区已经转成可交互字段。", `
+      <div class="form-grid">
+        ${baseFields.map(renderField).join("")}
+      </div>
+    `);
+  }
+
+  function renderDivorce(results) {
+    const rows = divorceFields.map((field) => {
+      const value = getByPath(state, field.path);
+      const matched = value === "是" ? "匹配" : value === "否" ? "不匹配" : "待确认";
+      return `
+        <tr>
+          <td class="wide"><b>${escapeHtml(field.label)}</b><br><span class="hint">${escapeHtml(field.effect)}</span></td>
+          <td>${renderMiniInput(field)}</td>
+          <td>${field.weight}</td>
+          <td><span class="computed ${matched === "匹配" ? "" : "warn"}">${matched}</span></td>
+        </tr>
+      `;
+    }).join("");
+
+    return `
+      ${panel("诉讼离婚支持度", "分数不是概率，只用于把法定情形强弱和程序事实分层。", `
+        <div class="summary-grid">
+          ${metric("强法定情形得分", String(results.divorce.strongScore), "恶劣行为或强客观法定情形。")}
+          ${metric("审慎情形得分", String(results.divorce.cautiousScore), "分居、兜底条款等需要综合裁量。")}
+          ${metric("匹配条数", String(results.divorce.matchedCount), "已填“是”的离婚事实数量。")}
+        </div>
+        <div style="height: 12px;"></div>
+        ${renderResultItem("诉讼离婚支持度", results.divorce.litigationSupport, priorityClass(results.divorce.priority))}
+        ${renderResultItem("协议离婚路径", results.divorce.agreementPath, results.divorce.agreementPath.includes("清晰") ? "low" : "medium")}
+        ${renderResultItem("程序性风险", results.divorce.procedureRisk, results.divorce.procedureRisk.includes("特殊") ? "high" : "low")}
+        ${renderResultItem("首次起诉提示", results.divorce.firstSuitTip, results.divorce.firstSuitTip.includes("保守") ? "medium" : "low")}
+      `)}
+      ${panel("法定情形匹配表", "选择事实后，右侧结果会自动重算。", `
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead><tr><th>判断事项</th><th>用户填写</th><th>权重</th><th>是否匹配</th></tr></thead>
+            <tbody>${rows}</tbody>
+          </table>
+        </div>
+      `)}
+    `;
+  }
+
+  function renderChildren(results) {
+    const topFields = [
+      { path: "children.count", label: "子女总数", type: "number", hint: "用于抚养费比例和报告摘要。" },
+      { path: "children.fatherIncome", label: "父亲月收入", type: "number", hint: "可填大致数额。" },
+      { path: "children.motherIncome", label: "母亲月收入", type: "number", hint: "可填大致数额。" },
+      { path: "children.preferred", label: "用户希望直接抚养方", type: "select", options: ["父亲", "母亲", "轮流抚养", "不确定"], hint: "仅作为用户诉求，不代表法院判断。" },
+    ];
+    const rows = state.children.rows.map((row, index) => {
+      const calc = results.children.rows[index] || {};
+      return `
+        <tr>
+          <td class="compact">${index + 1}</td>
+          ${childTableFields.map((field) => `<td>${renderTableInput(`children.rows.${index}.${field.key}`, row[field.key], field)}</td>`).join("")}
+          <td class="wide"><span class="computed ${calc.tendency && calc.tendency.includes("严重") ? "danger" : ""}">${escapeHtml(calc.tendency || "待填写")}</span></td>
+          <td class="wide"><span class="computed">${escapeHtml(calc.fee || "待填写")}</span></td>
+        </tr>
+      `;
+    }).join("");
+    return `
+      ${panel("子女基本信息", "本页不审查证据，仅按年龄、照护稳定性、子女意愿和不利因素进行初步规则匹配。", `
+        <div class="form-grid">${topFields.map(renderField).join("")}</div>
+      `)}
+      ${panel("子女逐项初判", "可按每名子女分别填写。", `
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr><th class="compact">序号</th>${childTableFields.map((field) => `<th>${escapeHtml(field.label)}</th>`).join("")}<th>直接抚养倾向</th><th>抚养费参考</th></tr>
+            </thead>
+            <tbody>${rows}</tbody>
+          </table>
+        </div>
+        <div style="margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap;">
+          <button class="btn" type="button" data-action="add-row" data-value="children">${icon("plus")}增加子女</button>
+          ${state.children.rows.length > 1 ? `<button class="btn danger" type="button" data-action="remove-row" data-scope="children" data-index="${state.children.rows.length - 1}">${icon("trash")}删除最后一行</button>` : ""}
+        </div>
+      `)}
+    `;
+  }
+
+  function renderProperty(results) {
+    const rows = state.property.rows.map((row, index) => {
+      const calc = results.property.rows[index] || {};
+      return `
+        <tr>
+          <td class="compact">${index + 1}</td>
+          ${propertyTableFields.map((field) => `<td>${renderTableInput(`property.rows.${index}.${field.key}`, row[field.key], field)}</td>`).join("")}
+          <td class="wide"><span class="computed ${resultTone(calc.ownership)}">${escapeHtml(calc.ownership || "待填写")}</span></td>
+          <td><span class="computed">${escapeHtml(calc.amountText || "待填写")}</span></td>
+        </tr>
+      `;
+    }).join("");
+    return `
+      ${panel("财产初算摘要", "高争议财产不自动计入合计，避免用户误解。", `
+        <div class="summary-grid">
+          ${metric("倾向共同财产合计", formatMoney(results.property.total), "仅统计倾向夫妻共同财产的估值。")}
+          ${metric("高争议财产", `${results.property.highCount} 项`, "父母出资购房、待确认财产等。")}
+          ${metric("个人财产提示", `${results.property.personalCount} 项`, "倾向个人财产或一方个人财产。")}
+        </div>
+      `)}
+      ${panel("夫妻财产清单", "首版按总表处理，房产、股权、经营性资产可在下一版拆专项页。", `
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead><tr><th class="compact">序号</th>${propertyTableFields.map((field) => `<th>${escapeHtml(field.label)}</th>`).join("")}<th>初步归属</th><th>共同财产参考计入</th></tr></thead>
+            <tbody>${rows}</tbody>
+          </table>
+        </div>
+        <div style="margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap;">
+          <button class="btn" type="button" data-action="add-row" data-value="property">${icon("plus")}增加财产</button>
+          ${state.property.rows.length > 1 ? `<button class="btn danger" type="button" data-action="remove-row" data-scope="property" data-index="${state.property.rows.length - 1}">${icon("trash")}删除最后一行</button>` : ""}
+        </div>
+      `)}
+    `;
+  }
+
+  function renderDebt(results) {
+    const rows = state.debt.rows.map((row, index) => {
+      const calc = results.debt.rows[index] || {};
+      return `
+        <tr>
+          <td class="compact">${index + 1}</td>
+          ${debtTableFields.map((field) => `<td>${renderTableInput(`debt.rows.${index}.${field.key}`, row[field.key], field)}</td>`).join("")}
+          <td class="wide"><span class="computed ${resultTone(calc.result)}">${escapeHtml(calc.result || "待填写")}</span></td>
+          <td><span class="computed">${escapeHtml(calc.amountText || "待填写")}</span></td>
+        </tr>
+      `;
+    }).join("");
+    return `
+      ${panel("债务初判摘要", "债务模块只做事实规则匹配，不代表债权人或法院最终认定。", `
+        <div class="summary-grid">
+          ${metric("倾向共同债务合计", formatMoney(results.debt.total), "共同签字、追认或共同用途。")}
+          ${metric("高争议债务", `${results.debt.highCount} 项`, "超日常、担保投资、用途待确认等。")}
+          ${metric("个人/不保护债务", `${results.debt.personalCount} 项`, "违法债务、赌博债务等。")}
+        </div>
+      `)}
+      ${panel("夫妻债务清单", "建议用户尽量补充用途、签字、资金流向和债权人材料。", `
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead><tr><th class="compact">序号</th>${debtTableFields.map((field) => `<th>${escapeHtml(field.label)}</th>`).join("")}<th>初步归属</th><th>共同债务参考金额</th></tr></thead>
+            <tbody>${rows}</tbody>
+          </table>
+        </div>
+        <div style="margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap;">
+          <button class="btn" type="button" data-action="add-row" data-value="debt">${icon("plus")}增加债务</button>
+          ${state.debt.rows.length > 1 ? `<button class="btn danger" type="button" data-action="remove-row" data-scope="debt" data-index="${state.debt.rows.length - 1}">${icon("trash")}删除最后一行</button>` : ""}
+        </div>
+      `)}
+    `;
+  }
+
+  function renderBridePrice(results) {
+    return `
+      ${panel("彩礼返还事实", "彩礼金额较大、共同生活时间短、双方争议大时，应进入律师复核。", `
+        <div class="form-grid">${bridePriceFields.map(renderField).join("")}</div>
+      `)}
+      ${panel("彩礼返还初判", "本模块不审查彩礼性质、实际流向和地方习俗，只做规则方向提示。", `
+        <div class="summary-grid">
+          ${metric("返还支持度", results.bridePrice.support, "登记、共同生活和孕育事实是关键变量。")}
+          ${metric("返还比例方向", results.bridePrice.direction, "不输出固定比例。")}
+          ${metric("律师复核", results.bridePrice.priority, "金额大或事实争议大时优先复核。")}
+        </div>
+        <div style="height: 12px;"></div>
+        ${renderResultItem("初步结论", results.bridePrice.conclusion, priorityClass(results.bridePrice.priority))}
+      `)}
+    `;
+  }
+
+  function renderRelief(results) {
+    const rows = reliefFields.map((field) => `
+      <tr>
+        <td class="wide"><b>${escapeHtml(field.label)}</b><br><span class="hint">${escapeHtml(field.source)}</span></td>
+        <td>${renderMiniInput(field)}</td>
+        <td>${escapeHtml(field.consequence)}</td>
+        <td><span class="computed ${getByPath(state, field.path) === "是" ? "warn" : ""}">${escapeHtml(results.relief.items[field.path] || "待确认")}</span></td>
+      </tr>
+    `).join("");
+    return `
+      ${panel("补偿赔偿、多分少分规则匹配", "金额和成立条件必须个案判断，本页只负责识别救济入口。", `
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead><tr><th>规则事项</th><th>用户填写</th><th>法律后果方向</th><th>自动结论</th></tr></thead>
+            <tbody>${rows}</tbody>
+          </table>
+        </div>
+      `)}
+      ${panel("综合提示", "存在财产转移、重大过错、长期家务贡献或生活困难时，建议进入律师复核。", `
+        ${renderResultItem("匹配结果", results.relief.summary, results.relief.priority === "高" ? "high" : "medium")}
+      `)}
+    `;
+  }
+
+  function renderReport(results) {
+    const actions = `
+      <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+        <button class="btn primary" type="button" data-action="copy-report">${icon("copy")}复制报告</button>
+        <button class="btn" type="button" data-action="download-report">${icon("download")}下载 TXT</button>
+        <button class="btn" type="button" data-action="print">${icon("print")}打印</button>
+      </div>
+    `;
+    return `
+      <section class="panel printable">
+        <div class="panel-header">
+          <div>
+            <h2>婚姻家事权益初判报告</h2>
+            <p>报告供用户理解风险、供律师复核事实，不构成正式法律意见。</p>
+          </div>
+          ${actions}
+        </div>
+        <div class="panel-body">
+          <div class="report">
+            ${results.reportRows.map((row) => `
+              <article class="report-row">
+                <h3>${escapeHtml(row.module)}</h3>
+                <p><b>${escapeHtml(row.conclusion)}</b><br>${escapeHtml(row.copy)}</p>
+                <span class="priority ${priorityClass(row.priority)}">${escapeHtml(row.priority)}</span>
+              </article>
+            `).join("")}
+          </div>
+        </div>
+      </section>
+    `;
+  }
+
+  function renderRules() {
+    return panel("法源规则库与规则维护表", "这张表后续可以拆成问题表、选项表、规则表、结论表、法源表。", `
+      <div class="rules-list">
+        ${ruleRows.map((row) => `
+          <article class="rule-item">
+            <h3>${escapeHtml(row[0])}</h3>
+            <p>${escapeHtml(row[2])}</p>
+            <div class="tag-row">
+              <span class="tag">${escapeHtml(row[1])}</span>
+              <span class="tag">字段：${escapeHtml(row[3])}</span>
+              <span class="tag">输出：${escapeHtml(row[4])}</span>
+            </div>
+          </article>
+        `).join("")}
+      </div>
+    `);
+  }
+
+  function renderRail(results) {
+    return `
+      <aside class="side-rail">
+        <section class="panel">
+          <div class="panel-header">
+            <div>
+              <h3>当前摘要</h3>
+              <p>随填写自动重算。</p>
+            </div>
+          </div>
+          <div class="panel-body">
+            <ul class="rail-list">
+              <li><b>离婚支持度</b><span>${escapeHtml(results.divorce.litigationSupport)}</span></li>
+              <li><b>共同财产</b><span>${formatMoney(results.property.total)}；${results.property.highCount} 项高争议</span></li>
+              <li><b>共同债务</b><span>${formatMoney(results.debt.total)}；${results.debt.highCount} 项高争议</span></li>
+              <li><b>律师复核</b><span>${escapeHtml(results.overallPriority)}优先级</span></li>
+            </ul>
+          </div>
+        </section>
+        <section class="panel">
+          <div class="panel-header">
+            <div>
+              <h3>Excel 原型</h3>
+              <p>桌面电子表已转为交互逻辑。</p>
+            </div>
+          </div>
+          <div class="panel-body">
+            <img class="preview-image" src="./assets/report-preview.png" alt="Excel 结果报告原型预览" />
+          </div>
+        </section>
+      </aside>
+    `;
+  }
+
+  function panel(title, subtitle, body) {
+    return `
+      <section class="panel">
+        <div class="panel-header">
+          <div>
+            <h2>${escapeHtml(title)}</h2>
+            <p>${escapeHtml(subtitle)}</p>
+          </div>
+        </div>
+        <div class="panel-body">${body}</div>
+      </section>
+    `;
+  }
+
+  function renderField(field) {
+    const value = getByPath(state, field.path) ?? "";
+    const full = field.full ? " full" : "";
+    return `
+      <div class="field${full}">
+        <label for="${fieldId(field.path)}">${escapeHtml(field.label)}</label>
+        ${renderInput(field, value)}
+        ${field.hint ? `<p class="hint">${escapeHtml(field.hint)}</p>` : ""}
+      </div>
+    `;
+  }
+
+  function renderMiniInput(field) {
+    const value = getByPath(state, field.path) ?? "";
+    return renderInput(field, value, true);
+  }
+
+  function renderInput(field, value) {
+    const id = fieldId(field.path);
+    if (field.type === "select") {
+      return `
+        <select id="${id}" data-path="${escapeAttr(field.path)}">
+          ${(field.options || []).map((option) => `<option value="${escapeAttr(option)}" ${option === value ? "selected" : ""}>${escapeHtml(option || "请选择")}</option>`).join("")}
+        </select>
+      `;
+    }
+    if (field.type === "textarea") {
+      return `<textarea id="${id}" data-path="${escapeAttr(field.path)}">${escapeHtml(value)}</textarea>`;
+    }
+    return `<input id="${id}" data-path="${escapeAttr(field.path)}" type="${field.type || "text"}" value="${escapeAttr(value)}" ${field.type === "number" ? 'inputmode="decimal" step="any"' : ""} />`;
+  }
+
+  function renderTableInput(path, value, field) {
+    const normalizedValue = value ?? "";
+    if (field.type === "select") {
+      return `
+        <select data-path="${escapeAttr(path)}">
+          ${(field.options || []).map((option) => `<option value="${escapeAttr(option)}" ${option === normalizedValue ? "selected" : ""}>${escapeHtml(option || "请选择")}</option>`).join("")}
+        </select>
+      `;
+    }
+    return `<input data-path="${escapeAttr(path)}" type="${field.type || "text"}" value="${escapeAttr(normalizedValue)}" ${field.type === "number" ? 'inputmode="decimal" step="any"' : ""} />`;
+  }
+
+  function calculateAll(current) {
+    const divorce = calculateDivorce(current);
+    const children = calculateChildren(current);
+    const property = calculateProperty(current);
+    const debt = calculateDebt(current);
+    const bridePrice = calculateBridePrice(current);
+    const relief = calculateRelief(current);
+    const reportRows = buildReportRows(current, { divorce, children, property, debt, bridePrice, relief });
+    const overallPriority = reportRows.some((row) => row.priority === "高") ? "高" : reportRows.some((row) => row.priority === "中") ? "中" : "低";
+    return { divorce, children, property, debt, bridePrice, relief, reportRows, overallPriority };
+  }
+
+  function calculateDivorce(current) {
+    const d = current.divorce;
+    const strongKeys = ["bigamyCohabitation", "domesticViolence", "abuseAbandon", "badHabits", "declaredMissing"];
+    const strongScore = strongKeys.reduce((sum, key) => sum + (d[key] === "是" ? 5 : 0), 0) + (current.base.separatedAfterNoJudgment === "是" ? 5 : 0);
+    const cautiousScore = (d.separatedTwoYears === "是" ? 3 : 0) + (d.otherBroken === "是" ? 2 : 0);
+    const matchedCount = Object.values(d).filter((item) => item === "是").length + (current.base.separatedAfterNoJudgment === "是" ? 1 : 0);
+
+    let litigationSupport = "较低：暂未匹配明确法定离婚情形";
+    if (current.base.registeredStatus === "未办理结婚登记") {
+      litigationSupport = "不适用离婚路径，建议查看同居、子女、彩礼、析产规则";
+    } else if (current.base.separatedAfterNoJudgment === "是") {
+      litigationSupport = "较高：已填报判决不准离婚后又分居满一年，再次起诉属于明确准予离婚情形";
+    } else if (d.declaredMissing === "是") {
+      litigationSupport = "较高：已填报一方被宣告失踪，属于强客观法定情形";
+    } else if (["bigamyCohabitation", "domesticViolence", "abuseAbandon", "badHabits"].some((key) => d[key] === "是")) {
+      litigationSupport = "中高至较高：已匹配重婚/同居、家暴、虐待遗弃、恶习屡教不改等明显法定情形";
+    } else if (d.separatedTwoYears === "是") {
+      litigationSupport = current.base.firstSuit === "是"
+        ? "中等偏高但需审慎：首次起诉即使填报因感情不和分居满二年，仍不宜直接判断为高支持"
+        : "中高：已填报因感情不和分居满二年，仍需综合婚姻基础、关系现状和和好可能判断";
+    } else if (d.otherBroken === "是") {
+      litigationSupport = current.base.firstSuit === "是"
+        ? "谨慎：首次起诉且主要依赖其他感情破裂事实，司法判断通常较保守"
+        : "中等：存在其他感情破裂因素，但仍属综合裁量";
+    } else if (d.agreementOnAll === "是") {
+      litigationSupport = "偏低至中等：协议条件有利于调解，但不等于法院当然判离";
+    }
+
+    const agreementPath = current.base.bothAgree === "是" && current.base.divorceAgreement === "是" && current.base.coolingPeriod === "是"
+      ? "协议离婚路径较清晰"
+      : "协议离婚条件尚不完整或待确认";
+    const procedureRisk = current.base.maleSuitLimit === "是"
+      ? "存在特殊起诉限制或程序限制，建议先咨询律师"
+      : current.base.militaryMarriage === "是"
+        ? "涉及军婚特别规则，建议律师复核"
+        : "未识别明显特殊程序限制";
+    const firstSuitTip = current.base.firstSuit === "是" && strongScore === 0
+      ? "首次起诉且未填报重婚同居、家暴、虐待遗弃、恶习屡教不改、失踪、判不离后再分居等强情形时，结论应保守表达为谨慎或中等，不宜提示高概率。"
+      : "未触发首次起诉保守降档，但仍应避免承诺法院必然判离。";
+    const priority = litigationSupport.includes("较高") || litigationSupport.includes("家暴") || procedureRisk.includes("特殊") ? "高" : litigationSupport.includes("中") || litigationSupport.includes("谨慎") ? "中" : "低";
+    return { strongScore, cautiousScore, matchedCount, litigationSupport, agreementPath, procedureRisk, firstSuitTip, priority };
+  }
+
+  function calculateChildren(current) {
+    const count = toNumber(current.children.count);
+    const rows = current.children.rows.map((row) => {
+      const hasAny = Object.values(row).some((value) => value !== "" && value !== "否" && value !== "不确定" && value !== "未表达/不适用");
+      const age = toNumber(row.age);
+      if (!hasAny && row.age === "") return { tendency: "", fee: "", tip: "" };
+      let tendency = "综合最有利于未成年人原则判断";
+      if (Number.isFinite(age)) {
+        if (age < 2) tendency = "原则上更倾向母方直接抚养（非绝对）";
+        else if (age >= 8) {
+          if (row.wish === "愿随父亲") tendency = "倾向尊重子女愿随父亲的真实意愿";
+          else if (row.wish === "愿随母亲") tendency = "倾向尊重子女愿随母亲的真实意愿";
+          else tendency = "应重点核实并尊重子女真实意愿";
+        } else if (row.fatherBad === "是") tendency = "倾向母方或其他更适宜照护方";
+        else if (row.motherBad === "是") tendency = "倾向父方或其他更适宜照护方";
+        else if (row.care !== "不确定") tendency = "倾向维持当前稳定照护状态";
+      }
+      const fee = count <= 1
+        ? "一般可参考不直接抚养方月收入20%-30%，无固定收入则参考实际负担能力"
+        : "两个以上子女一般可适当提高，但通常不宜超过月收入50%";
+      const tip = Number.isFinite(age)
+        ? age < 2 ? "两周岁以下规则较特殊" : age >= 8 ? "八周岁以上应尊重其真实意愿" : "两至八周岁重点比较双方照护能力和稳定生活环境"
+        : "请先填写年龄";
+      return { tendency, fee, tip };
+    });
+    return { rows };
+  }
+
+  function calculateProperty(current) {
+    let total = 0;
+    let highCount = 0;
+    let personalCount = 0;
+    const rows = current.property.rows.map((row) => {
+      const hasAny = row.name || row.type || row.value;
+      if (!hasAny) return { ownership: "", amount: "", amountText: "" };
+      let ownership = "高争议/待确认";
+      if (row.agreement === "是") ownership = "按夫妻财产约定优先判断";
+      else if (row.exclusiveGift === "是") ownership = "倾向一方个人财产";
+      else if (row.acquireTime === "婚前取得") ownership = "倾向个人财产，婚后还贷及增值另行判断";
+      else if (row.acquireTime === "婚后取得") ownership = row.parentFunded === "是" ? "高争议：父母出资购房需专项判断" : "倾向夫妻共同财产";
+
+      const value = toNumber(row.value);
+      let amount = "";
+      let amountText = "";
+      if (Number.isFinite(value)) {
+        if (ownership === "倾向夫妻共同财产") {
+          amount = value;
+          amountText = formatMoney(value);
+          total += value;
+        } else if (ownership === "按夫妻财产约定优先判断") {
+          amountText = "按约定另计";
+        } else if (ownership.startsWith("高争议")) {
+          amountText = "暂不自动计入";
+        } else {
+          amount = 0;
+          amountText = "0";
+        }
+      }
+      if (ownership.startsWith("高争议")) highCount += 1;
+      if (ownership.startsWith("倾向个人财产") || ownership === "倾向一方个人财产") personalCount += 1;
+      return { ownership, amount, amountText };
+    });
+    return { rows, total, highCount, personalCount };
+  }
+
+  function calculateDebt(current) {
+    let total = 0;
+    let highCount = 0;
+    let personalCount = 0;
+    const rows = current.debt.rows.map((row) => {
+      const hasAny = row.name || row.amount;
+      if (!hasAny) return { result: "", amount: "", amountText: "" };
+      let result = "高争议/待确认";
+      if (row.illegal === "是") result = "倾向个人债务或不受保护债务";
+      else if (row.signed === "是") result = "倾向夫妻共同债务";
+      else if (["家庭日常生活", "夫妻共同经营", "购置共同财产"].includes(row.use)) result = "倾向夫妻共同债务";
+      else if (row.exceedsDaily === "是") result = "高争议：需证明共同意思或共同利益";
+
+      const value = toNumber(row.amount);
+      let amount = "";
+      let amountText = "";
+      if (Number.isFinite(value)) {
+        if (result === "倾向夫妻共同债务") {
+          amount = value;
+          amountText = formatMoney(value);
+          total += value;
+        } else if (result.startsWith("高争议")) {
+          amountText = "暂不自动计入";
+        } else {
+          amount = 0;
+          amountText = "0";
+        }
+      }
+      if (result.startsWith("高争议")) highCount += 1;
+      if (result === "倾向个人债务或不受保护债务") personalCount += 1;
+      return { result, amount, amountText };
+    });
+    return { rows, total, highCount, personalCount };
+  }
+
+  function calculateBridePrice(current) {
+    const b = current.bridePrice;
+    let support = "不适用";
+    if (b.exists === "是") {
+      if (b.registered === "否") support = "较高";
+      else if (b.registered === "是" && b.livedTogether === "否") support = "较高";
+      else if (b.registered === "是" && b.livedTogether === "是" && (!b.months || toNumber(b.months) <= 6)) support = "中高：可能部分返还";
+      else if (b.pregnant === "是") support = "偏低至中等";
+      else support = "中等至偏低";
+    }
+    const direction = b.exists !== "是"
+      ? "不适用"
+      : support === "较高"
+        ? "返还比例可能较高"
+        : support.startsWith("中高")
+          ? "通常考虑部分返还"
+          : support.startsWith("偏低")
+            ? "返还比例可能较低"
+            : "需综合共同生活、孕育、用途、过错判断";
+    const conclusion = b.exists !== "是" ? "未填写彩礼或无彩礼，不进入返还判断" : `${support}；${direction}`;
+    const priority = b.exists === "是" && (support.includes("较高") || toNumber(b.amount) >= 100000) ? "中" : "低";
+    return { support, direction, conclusion, priority };
+  }
+
+  function calculateRelief(current) {
+    const items = {};
+    let matched = 0;
+    for (const field of reliefFields) {
+      const value = getByPath(current, field.path);
+      if (value === "是") {
+        items[field.path] = `已匹配：${field.consequence}`;
+        matched += 1;
+      } else if (value === "否") {
+        items[field.path] = "暂不匹配";
+      } else {
+        items[field.path] = "待确认";
+      }
+    }
+    const summary = Object.values(items).join("；");
+    return { items, summary, priority: matched > 0 ? "高" : "中" };
+  }
+
+  function buildReportRows(current, results) {
+    return [
+      {
+        module: "婚姻关系路径",
+        conclusion: current.base.registeredStatus === "未办理结婚登记" ? "未登记：优先考虑同居、子女、彩礼和析产问题" : "已登记或待确认：进入离婚及婚姻效力判断",
+        copy: "先判断是否已登记，再区分协议离婚、诉讼离婚、婚姻无效/撤销或同居关系。",
+        priority: current.base.registeredStatus === "未办理结婚登记" || current.base.registeredStatus === "不确定" ? "中" : "低",
+      },
+      {
+        module: "协议离婚路径",
+        conclusion: results.divorce.agreementPath,
+        copy: "双方自愿并对子女、财产、债务达成一致时，协议路径更清晰；协议内容仍需审查。",
+        priority: results.divorce.agreementPath.includes("尚不完整") ? "中" : "低",
+      },
+      {
+        module: "诉讼离婚支持度",
+        conclusion: results.divorce.litigationSupport,
+        copy: "按法定离婚情形进行事实匹配，并按首次起诉、再次起诉、判不离后又分居满一年等程序事实修正。",
+        priority: results.divorce.priority,
+      },
+      {
+        module: "子女抚养",
+        conclusion: current.children.count ? `${current.children.count}名子女；请查看子女逐项初判` : "未填写子女信息",
+        copy: "按年龄、照护稳定性、真实意愿、不利因素进行初判；最有利于未成年人原则具有裁量空间。",
+        priority: current.children.count ? "高" : "低",
+      },
+      {
+        module: "夫妻共同财产",
+        conclusion: `倾向共同财产合计：${formatMoney(results.property.total)}；${results.property.highCount} 项高争议财产需专项判断`,
+        copy: "婚后取得通常倾向共同财产，婚前财产、继承赠与、父母出资购房、股权等需细分。",
+        priority: results.property.highCount > 0 ? "高" : "中",
+      },
+      {
+        module: "夫妻共同债务",
+        conclusion: `倾向共同债务合计：${formatMoney(results.debt.total)}；${results.debt.highCount} 项高争议债务需专项判断`,
+        copy: "共同签字、追认、家庭共同生活或共同经营用途更可能认定为共同债务。",
+        priority: results.debt.highCount > 0 ? "高" : "中",
+      },
+      {
+        module: "彩礼返还",
+        conclusion: results.bridePrice.conclusion,
+        copy: "按是否登记、共同生活、共同生活时长、孕育、用途、生活困难等因素判断。",
+        priority: results.bridePrice.priority,
+      },
+      {
+        module: "补偿赔偿少分",
+        conclusion: results.relief.summary,
+        copy: "匹配家务补偿、经济帮助、损害赔偿、少分不分等特别规则。",
+        priority: results.relief.priority,
+      },
+      {
+        module: "综合风险说明",
+        conclusion: "本报告仅供参考，不构成正式法律意见。",
+        copy: "不得替代律师咨询、证据审查、诉讼策略和法院裁判。不得仅凭本报告起诉、签约、转移财产或拒绝履行义务。",
+        priority: "高",
+      },
+      {
+        module: "律师引流建议",
+        conclusion: "建议设置“生成报告后预约律师复核”入口。",
+        copy: "免费工具解决认知问题，律师服务解决个案判断和行动方案。避免对外承诺胜诉率、判离率或返还比例。",
+        priority: "高",
+      },
+    ];
+  }
+
+  function reportToText() {
+    const results = calculateAll(state);
+    const lines = ["婚姻家事权益初判报告", "", "重要声明：本报告仅供参考，不构成正式法律意见，不能替代律师个案分析、证据审查、诉讼策略判断或法院裁判。", ""];
+    for (const row of results.reportRows) {
+      lines.push(`【${row.module}】`);
+      lines.push(`结论：${row.conclusion}`);
+      lines.push(`说明：${row.copy}`);
+      lines.push(`律师复核优先级：${row.priority}`);
+      lines.push("");
+    }
+    return lines.join("\n");
+  }
+
+  async function copyReport() {
+    const text = reportToText();
+    try {
+      await navigator.clipboard.writeText(text);
+      toast("报告已复制到剪贴板。");
+    } catch {
+      const textarea = document.createElement("textarea");
+      textarea.value = text;
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand("copy");
+      textarea.remove();
+      toast("报告已复制到剪贴板。");
+    }
+  }
+
+  function downloadTextReport() {
+    downloadBlob(reportToText(), "婚姻家事权益初判报告.txt", "text/plain;charset=utf-8");
+  }
+
+  function downloadJson() {
+    downloadBlob(JSON.stringify(state, null, 2), "婚姻家事权益初判数据.json", "application/json;charset=utf-8");
+  }
+
+  function bindImport() {
+    const input = document.getElementById("importFile");
+    input.addEventListener("change", async () => {
+      const file = input.files && input.files[0];
+      if (!file) return;
+      try {
+        const text = await file.text();
+        state = mergeDefaults(defaultState(), JSON.parse(text));
+        saveState();
+        renderApp();
+        toast("已导入 JSON 数据。");
+      } catch (error) {
+        console.error(error);
+        toast("导入失败，请确认文件是本工具导出的 JSON。");
+      } finally {
+        input.value = "";
+      }
+    });
+  }
+
+  function downloadBlob(content, filename, type) {
+    const blob = new Blob([content], { type });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = filename;
+    link.click();
+    URL.revokeObjectURL(url);
+  }
+
+  function addRow(scope) {
+    if (scope === "children") state.children.rows.push(makeChildRow());
+    if (scope === "property") state.property.rows.push(makePropertyRow());
+    if (scope === "debt") state.debt.rows.push(makeDebtRow());
+  }
+
+  function removeRow(scope, index) {
+    if (scope === "children" && state.children.rows.length > 1) state.children.rows.splice(index, 1);
+    if (scope === "property" && state.property.rows.length > 1) state.property.rows.splice(index, 1);
+    if (scope === "debt" && state.debt.rows.length > 1) state.debt.rows.splice(index, 1);
+  }
+
+  function isModuleStarted(id) {
+    if (id === "guide") return state.accepted;
+    if (id === "report" || id === "rules") return true;
+    const baseline = defaultState();
+    return JSON.stringify(state[id]) !== JSON.stringify(baseline[id]);
+  }
+
+  function metric(label, value, help) {
+    return `<div class="metric"><b>${escapeHtml(label)}</b><strong>${escapeHtml(value)}</strong><p>${escapeHtml(help)}</p></div>`;
+  }
+
+  function renderResultItem(title, text, tone) {
+    return `<article class="result-item ${tone || ""}"><h3>${escapeHtml(title)}</h3><p>${escapeHtml(text)}</p></article>`;
+  }
+
+  function resultTone(text) {
+    if (!text) return "";
+    if (text.includes("高争议") || text.includes("个人债务")) return "warn";
+    if (text.includes("共同")) return "";
+    return "danger";
+  }
+
+  function priorityClass(priority) {
+    if (priority === "高" || priority === "high") return "high";
+    if (priority === "中" || priority === "medium") return "medium";
+    return "low";
+  }
+
+  function icon(name) {
+    return `<svg class="icon" aria-hidden="true"><use href="#icon-${name}"></use></svg>`;
+  }
+
+  function fieldId(path) {
+    return `field-${path.replace(/[^a-zA-Z0-9_-]/g, "-")}`;
+  }
+
+  function getByPath(obj, path) {
+    return path.split(".").reduce((current, key) => current == null ? undefined : current[key], obj);
+  }
+
+  function setByPath(obj, path, value) {
+    const parts = path.split(".");
+    let current = obj;
+    for (let i = 0; i < parts.length - 1; i += 1) current = current[parts[i]];
+    current[parts[parts.length - 1]] = value;
+  }
+
+  function toNumber(value) {
+    if (value === "" || value == null) return NaN;
+    const normalized = String(value).replace(/,/g, "").trim();
+    if (!normalized) return NaN;
+    const number = Number(normalized);
+    return Number.isFinite(number) ? number : NaN;
+  }
+
+  function formatMoney(value) {
+    const number = Number(value);
+    if (!Number.isFinite(number)) return "0.00";
+    return number.toLocaleString("zh-CN", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
+
+  function escapeHtml(value) {
+    return String(value ?? "")
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
+  }
+
+  function escapeAttr(value) {
+    return escapeHtml(value);
+  }
+
+  let toastTimer = null;
+  function toast(message) {
+    const existing = document.querySelector(".toast");
+    if (existing) existing.remove();
+    const el = document.createElement("div");
+    el.className = "toast";
+    el.textContent = message;
+    document.body.appendChild(el);
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => el.remove(), 2600);
+  }
+
+  if (typeof window !== "undefined") {
+    window.MarriageLawProduct = { calculateAll, defaultState, demoState };
+  }
+})();
+
+    </script>
+  </body>
+</html>
